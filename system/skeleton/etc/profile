@@ -1,19 +1,8 @@
 export PATH=@PATH@
-
-if [ "$PS1" ]; then
-	if [ "`id -u`" -eq 0 ]; then
-		export PS1='# '
-	else
-		export PS1='$ '
-	fi
-fi
-
+export PS1='$(pwd)\$ '
 export EDITOR='/bin/vi'
 
 # Source configuration files from /etc/profile.d
 for i in /etc/profile.d/*.sh ; do
-	if [ -r "$i" ]; then
-		. $i
-	fi
-done
-unset i
+	[ -r "$i" ] && . $i
+done;unset i
